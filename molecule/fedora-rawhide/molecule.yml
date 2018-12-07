@@ -19,7 +19,7 @@ provisioner:
       all:
         go_ignore_docker: no
     host_vars:
-      dovecot-fedora-rawhide:
+      go-fedora-rawhide:
         ansible_python_interpreter: /usr/bin/python3
   lint:
     name: ansible-lint
