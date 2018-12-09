@@ -30,7 +30,11 @@ These variables are set in `defaults/main.yml`:
 ---
 # defaults file for go
 
+# Verion to install.
 go_version: 1.11.2
+
+# Where to place the binaries.
+go_destination: /usr/local/bin
 
 # Some Docker containers do not allow managing services, rebooting and writing
 # to some locations in /etc. The role skips tasks that will typically fail in
