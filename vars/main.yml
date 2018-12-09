@@ -7,3 +7,11 @@ _go_architecture:
 go_architecture: "{{ _go_architecture[ansible_architecture] }}"
 
 go_src: "https://storage.googleapis.com/golang/go{{ go_version }}.{{ ansible_system | lower }}-{{ go_architecture }}.tar.gz"
+
+go_files:
+  - src: /usr/local/go/bin/go
+    dest: "{{ go_destination }}/go"
+  - src: /usr/local/go/bin/godoc
+    dest: "{{ go_destination }}/godoc"
+  - src: /usr/local/go/bin/gofmt
+    dest: "{{ go_destination }}/gofmt"

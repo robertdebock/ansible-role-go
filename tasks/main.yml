@@ -1,7 +1,15 @@
 ---
 # tasks file for go
-- name: install go
+- name: unpack go in /usr/local/go
   unarchive:
     src: "{{ go_src }}"
     dest: /usr/local
     remote_src: yes
+
+- name: link go to /usr/local/bin/go
+  file:
+    dest: "{{ item.dest }}"
+    src: "{{ item.src }}"
+    state: link
+  with_items:
+    - "{{ go_files }}"
