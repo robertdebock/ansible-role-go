@@ -5,6 +5,7 @@
     src: "{{ go_src }}"
     dest: "{{ go_destination }}"
     remote_src: yes
+    creates: "{{ go_destination }}/go/bin/go }}"
 
 - name: add go to path variable
   template:
