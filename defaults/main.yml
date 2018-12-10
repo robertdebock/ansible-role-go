@@ -7,6 +7,9 @@ go_version: 1.11.2
 # Where to place go
 go_destination: /usr/local
 
+# Where to download packages to.
+go_root: /root
+
 # Some Docker containers do not allow managing services, rebooting and writing
 # to some locations in /etc. The role skips tasks that will typically fail in
 # Docker. With this parameter you can tell the role to -not- skip these tasks.

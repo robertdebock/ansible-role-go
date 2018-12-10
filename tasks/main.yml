@@ -19,14 +19,16 @@
 - name: go get packages
   command: go get {{ item }}
   args:
-    creates: /root/go/src/{{ item }}
+    creates: "{{ go_root }}/go/src/{{ item }}"
   with_items:
     - "{{ go_packages | default([]) }}"
+  environment:
+    GOROOT: "{{ go_root }}"
 
 - name: make install
   command: make install
   args:
-    chdir: /root/go/src/{{ item }}
-    creates: /root/go/bin/{{ item | basename }}
+    chdir: "{{ go_root }}/go/src/{{ item }}"
+    creates: "{{ go_root }}/go/bin/{{ item | basename }}"
   with_items:
     - "{{ go_packages | default([]) }}"
