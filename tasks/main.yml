@@ -1,11 +1,14 @@
 ---
 # tasks file for go
-- name: unpack go in /usr/local/go
+- name: unpack go
   unarchive:
     src: "{{ go_src }}"
     dest: "{{ go_destination }}"
     remote_src: yes
     creates: "{{ go_destination }}/go/bin/go }}"
+  register: go_unpack_go
+  until: go_unpack_go is succeeded
+  retries: 3
 
 - name: add go to path variable
   template:
