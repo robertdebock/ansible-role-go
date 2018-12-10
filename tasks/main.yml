@@ -15,3 +15,18 @@
     src: go.sh.j2
     dest: /etc/profile.d/go.sh
     mode: '0755'
+
+- name: go get packages
+  command: go get {{ item }}
+  args:
+    creates: /root/go/src/{{ item }}
+  with_items:
+    - "{{ go_packages | default([]) }}"
+
+- name: make install
+  command: make install
+  args:
+    chdir: /root/go/src/{{ item }}
+    creates: /root/go/bin/{{ item | basename }}
+  with_items:
+    - "{{ go_packages | default([]) }}"
