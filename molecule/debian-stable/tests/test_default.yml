@@ -1,9 +1,7 @@
 # Molecule managed
 ---
 file:
-  /usr/local/bin/go:
+  /usr/bin/python:
     exists: true
-  /usr/local/bin/godoc:
-    exists: true
-  /usr/local/bin/gofmt:
-    exists: true
+    owner: root
+    group: root
