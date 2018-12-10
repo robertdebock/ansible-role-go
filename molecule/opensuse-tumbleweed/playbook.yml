@@ -4,6 +4,10 @@
   gather_facts: false
   become: true
 
+  vars:
+    go_packages:
+      - github.com/golang/dep
+
   roles:
     - role: robertdebock.bootstrap
     - role: ansible-role-go
