@@ -5,7 +5,7 @@
     src: "{{ go_src }}"
     dest: "{{ go_destination }}"
     remote_src: yes
-    creates: "{{ go_destination }}/go/bin/go }}"
+    creates: "{{ go_destination }}/go/bin/go"
   register: go_unpack_go
   until: go_unpack_go is succeeded
   retries: 3
