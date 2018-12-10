@@ -10,3 +10,4 @@
   template:
     src: go.sh.j2
     dest: /etc/profile.d/go.sh
+    mode: '0755'
