@@ -3,13 +3,10 @@
 - name: unpack go in /usr/local/go
   unarchive:
     src: "{{ go_src }}"
-    dest: /usr/local
+    dest: "{{ go_destination }}"
     remote_src: yes
 
-- name: link go to /usr/local/bin/go
-  file:
-    dest: "{{ item.dest }}"
-    src: "{{ item.src }}"
-    state: link
-  with_items:
-    - "{{ go_files }}"
+- name: add go to path variable
+  template:
+    src: go.sh.j2
+    dest: /etc/profile.d/go.sh
