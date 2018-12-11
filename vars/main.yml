@@ -1,6 +1,13 @@
 ---
 # vars file for go
 
+_go_requirements:
+  default: []
+  Alpine:
+    - bash
+
+go_requirements: "{{ _go_requirements[ansible_distribution] | default(_go_requirements['default']) }}"
+
 _go_architecture:
   x86_64: amd64
 

@@ -1,5 +1,13 @@
 ---
 # tasks file for go
+- name: install requirements
+  package:
+    name: "{{ go_requirements }}"
+    state: "{{ go_package_state }}"
+  register: go_install_requirements
+  until: go_install_requirements
+  retries: 3
+
 - name: unpack go
   unarchive:
     src: "{{ go_src }}"
