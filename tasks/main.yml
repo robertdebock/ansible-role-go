@@ -14,10 +14,16 @@
   template:
     src: go.sh.j2
     dest: /etc/profile.d/{{ item }}
-    mode: '0755'
+    mode: '0644'
   with_items:
     - go.sh
     - go.csh
+
+- name: link go to a location in PATH
+  file:
+    src: "{{ go_destination }}/go/bin/go"
+    dest: /usr/bin/go
+    state: link
 
 - name: get requested packages
   command: go get {{ item }}
