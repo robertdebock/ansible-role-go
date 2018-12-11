@@ -5,30 +5,42 @@
     src: "{{ go_src }}"
     dest: "{{ go_destination }}"
     remote_src: yes
-    creates: "{{ go_destination }}/go/bin/go"
+    creates: "{{ go_destination }}/go/bin"
   register: go_unpack_go
   until: go_unpack_go is succeeded
   retries: 3
 
-- name: add go to path variable
+- name: add go_destination to path variable
   template:
     src: go.sh.j2
-    dest: /etc/profile.d/go.sh
+    dest: /etc/profile.d/{{ item }}
     mode: '0755'
+  with_items:
+    - go.sh
+    - go.csh
 
-- name: go get packages
+- name: get requested packages
   command: go get {{ item }}
   args:
-    creates: "{{ go_root }}/go/src/{{ item }}"
+    creates: "{{ go_path }}/go/src/{{ item }}"
   with_items:
     - "{{ go_packages | default([]) }}"
   environment:
-    GOROOT: "{{ go_root }}"
+    GOPATH: "{{ go_path }}"
 
-- name: make install
+- name: create go_path bin directory
+  file:
+    path: "{{ go_path }}/go/bin"
+    state: directory
+  when:
+    - go_packages is defined
+
+- name: install requested packages
   command: make install
   args:
-    chdir: "{{ go_root }}/go/src/{{ item }}"
-    creates: "{{ go_root }}/go/bin/{{ item | basename }}"
+    chdir: "{{ go_path }}/go/src/{{ item }}"
+    creates: "{{ go_path }}/go/bin/{{ item | basename }}"
   with_items:
     - "{{ go_packages | default([]) }}"
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ go_destination }}/go/bin"

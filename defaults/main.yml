@@ -8,7 +8,7 @@ go_version: 1.11.2
 go_destination: /usr/local
 
 # Where to download packages to.
-go_root: /root
+go_path: /root
 
 # Some Docker containers do not allow managing services, rebooting and writing
 # to some locations in /etc. The role skips tasks that will typically fail in

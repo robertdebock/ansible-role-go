@@ -16,8 +16,13 @@ This example is taken from `molecule/default/playbook.yml`:
   gather_facts: false
   become: true
 
+  vars:
+    go_packages:
+      - github.com/golang/dep
+
   roles:
     - role: robertdebock.bootstrap
+    - role: robertdebock.buildtools
     - role: robertdebock.go
 
 ```
@@ -33,8 +38,11 @@ These variables are set in `defaults/main.yml`:
 # Verion to install.
 go_version: 1.11.2
 
-# Where to place the binaries.
-go_destination: /usr/local/bin
+# Where to place go
+go_destination: /usr/local
+
+# Where to download packages to.
+go_path: /root
 
 # Some Docker containers do not allow managing services, rebooting and writing
 # to some locations in /etc. The role skips tasks that will typically fail in
@@ -53,6 +61,7 @@ The following roles can be installed to ensure all requirements are met, using `
 
 ---
 - robertdebock.bootstrap
+- robertdebock.buildtools
 
 
 Context
