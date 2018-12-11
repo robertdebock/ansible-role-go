@@ -25,27 +25,27 @@
     dest: /usr/bin/go
     state: link
 
+- name: create go_path bin directory
+  file:
+    path: "{{ go_path }}/bin"
+    state: directory
+  when:
+    - go_packages is defined
+
 - name: get requested packages
   command: go get {{ item }}
   args:
-    creates: "{{ go_path }}/go/src/{{ item }}"
+    creates: "{{ go_path }}/src/{{ item }}"
   with_items:
     - "{{ go_packages | default([]) }}"
   environment:
     GOPATH: "{{ go_path }}"
 
-- name: create go_path bin directory
-  file:
-    path: "{{ go_path }}/go/bin"
-    state: directory
-  when:
-    - go_packages is defined
-
 - name: install requested packages
   command: make install
   args:
-    chdir: "{{ go_path }}/go/src/{{ item }}"
-    creates: "{{ go_path }}/go/bin/{{ item | basename }}"
+    chdir: "{{ go_path }}/src/{{ item }}"
+    creates: "{{ go_path }}/bin/{{ item | basename }}"
   with_items:
     - "{{ go_packages | default([]) }}"
   environment:
