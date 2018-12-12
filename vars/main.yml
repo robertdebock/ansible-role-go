@@ -3,6 +3,8 @@
 
 _go_requirements:
   default: []
+  Archlinux:
+    - which
   Alpine:
     - bash
 
