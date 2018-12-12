@@ -60,7 +60,9 @@
   args:
     creates: "{{ go_path }}/src/{{ item }}"
   with_items:
-    - "{{ go_packages | default([]) }}"
+    - "{{ go_packages }}"
+  when:
+    - go_packages is defined
   environment:
     GOPATH: "{{ go_path }}"
 
@@ -70,6 +72,8 @@
     chdir: "{{ go_path }}/src/{{ item }}"
     creates: "{{ go_path }}/bin/{{ item | basename }}"
   with_items:
-    - "{{ go_packages | default([]) }}"
+    - "{{ go_packages }}"
+  when:
+    - go_packages is defined
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ go_destination }}/go/bin"
