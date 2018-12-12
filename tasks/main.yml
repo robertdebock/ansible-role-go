@@ -36,7 +36,7 @@
 - name: add go_destination to path variable
   template:
     src: go.sh.j2
-    dest: /etc/profile.d/{{ item }}
+    dest: "/etc/profile.d/{{ item }}"
     mode: '0644'
   with_items:
     - go.sh
@@ -56,7 +56,7 @@
     - go_packages is defined
 
 - name: get requested packages
-  command: go get {{ item }}
+  command: "go get {{ item }}"
   args:
     creates: "{{ go_path }}/src/{{ item }}"
   with_items:
