@@ -1,5 +1,20 @@
 ---
 # tasks file for go
+- name: create lib64 directory
+  file:
+    path: /lib64
+    state: directory
+  when:
+    - ansible_distribution == "Alpine"
+
+- name: link libc to lib64 directory
+  file:
+    src: /lib/libc.musl-x86_64.so.1
+    dest: /lib64/ld-linux-x86-64.so.2
+    state: link
+  when:
+    - ansible_distribution == "Alpine"
+
 - name: install requirements
   package:
     name: "{{ go_requirements }}"
