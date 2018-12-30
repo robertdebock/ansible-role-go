@@ -45,7 +45,7 @@ go_destination: /usr/local
 # Where to download packages to, aka GOROOT.
 go_path: /root/go
 
-# To update all packages installed by this roles, set `httpd_package_state` to `latest`.
+# To update all packages installed by this roles, set `go_package_state` to `latest`.
 go_package_state: present
 
 ```
@@ -82,7 +82,7 @@ This role has been tested against the following distributions and Ansible versio
 |------------|-----------|-----------|-------------|
 |alpine-edge*|yes|yes|yes*|
 |alpine-latest|yes|yes|yes*|
-|archlinux|yes|yes|yes*|
+|archlinux|no|no|no*|
 |centos-6|yes|yes|yes*|
 |centos-latest|yes|yes|yes*|
 |debian-latest|yes|yes|yes*|
