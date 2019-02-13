@@ -34,8 +34,10 @@ platforms:
     image: opensuse:leap
   - name: go-opensuse-tumbleweed
     image: opensuse:tumbleweed
-  - name: go-ubuntu-artful
-    image: ubuntu:artful
+  - name: go-ubuntu-latest
+    image: ubuntu:latest
+  - name: go-ubuntu-rolling
+    image: ubuntu:rolling
   - name: go-ubuntu-devel
     image: ubuntu:devel
 provisioner:
