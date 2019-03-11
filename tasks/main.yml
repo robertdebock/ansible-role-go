@@ -18,7 +18,7 @@
 - name: install requirements
   package:
     name: "{{ go_requirements }}"
-    state: "{{ go_package_state }}"
+    state: present
   register: go_install_requirements
   until: go_install_requirements
   retries: 3

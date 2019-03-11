@@ -45,9 +45,6 @@ go_destination: /usr/local
 
 # Where to download packages to, aka GOROOT.
 go_path: /root/go
-
-# To update all packages installed by this roles, set `go_package_state` to `latest`.
-go_package_state: present
 ```
 
 Requirements
