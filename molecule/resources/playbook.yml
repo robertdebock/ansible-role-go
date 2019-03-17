@@ -4,5 +4,9 @@
   become: yes
   gather_facts: yes
 
+  vars:
+    go_packages:
+      - github.com/golang/dep
+
   roles:
     - ansible-role-go

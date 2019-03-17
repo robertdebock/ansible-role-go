@@ -16,6 +16,10 @@ This example is taken from `molecule/default/playbook.yml`:
   become: yes
   gather_facts: yes
 
+  vars:
+    go_packages:
+      - github.com/golang/dep
+
   roles:
     - robertdebock.go
 ```
@@ -27,10 +31,6 @@ The machine you are running this on, may need to be prepared. Tests have been do
   hosts: all
   gather_facts: no
   become: yes
-
-  vars:
-    go_packages:
-      - github.com/golang/dep
 
   roles:
     - role: robertdebock.bootstrap

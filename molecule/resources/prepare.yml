@@ -4,10 +4,6 @@
   gather_facts: no
   become: yes
 
-  vars:
-    go_packages:
-      - github.com/golang/dep
-
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.buildtools
