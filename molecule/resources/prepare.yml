@@ -1,8 +1,8 @@
 ---
-- name: Converge
+- name: Prepare
   hosts: all
-  gather_facts: false
-  become: true
+  gather_facts: no
+  become: yes
 
   vars:
     go_packages:
@@ -12,4 +12,3 @@
     - role: robertdebock.bootstrap
     - role: robertdebock.buildtools
     - role: robertdebock.git
-    - role: ansible-role-go
