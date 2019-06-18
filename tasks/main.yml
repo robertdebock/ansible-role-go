@@ -20,7 +20,7 @@
     name: "{{ go_requirements }}"
     state: present
   register: go_install_requirements
-  until: go_install_requirements
+  until: go_install_requirements is succeeded
   retries: 3
 
 - name: unpack go
