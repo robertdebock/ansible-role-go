@@ -5,6 +5,7 @@ _go_requirements:
   default: []
   Archlinux:
     - bash
+    - perl
   Alpine:
     - bash
 
