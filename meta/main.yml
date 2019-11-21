@@ -36,7 +36,6 @@ galaxy_info:
     - go
     - archlinux
     - centos
-    - opensuse
     - rhel
     - ubuntu
 
