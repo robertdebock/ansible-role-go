@@ -38,7 +38,7 @@
     src: go.sh.j2
     dest: "/etc/profile.d/{{ item }}"
     mode: '0644'
-  with_items:
+  loop:
     - go.sh
     - go.csh
 
@@ -59,8 +59,7 @@
   command: "go get {{ item }}"
   args:
     creates: "{{ go_path }}/src/{{ item }}"
-  with_items:
-    - "{{ go_packages }}"
+  loop: "{{ go_packages }}"
   when:
     - go_packages is defined
   environment:
@@ -71,8 +70,7 @@
   args:
     chdir: "{{ go_path }}/src/{{ item }}"
     creates: "{{ go_path }}/bin/{{ item | basename }}"
-  with_items:
-    - "{{ go_packages }}"
+  loop: "{{ go_packages }}"
   when:
     - go_packages is defined
   environment:
