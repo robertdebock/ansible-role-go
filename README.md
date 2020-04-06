@@ -21,7 +21,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       - github.com/golang/dep
 
   roles:
-    - robertdebock.go
+    - role: robertdebock.go
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:

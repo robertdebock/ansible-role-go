@@ -9,4 +9,4 @@
       - github.com/golang/dep
 
   roles:
-    - ansible-role-go
+    - role: ansible-role-go
