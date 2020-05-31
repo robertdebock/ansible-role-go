@@ -28,6 +28,9 @@ galaxy_info:
     - name: OpenSUSE
       versions:
         - all
+    - name: Ubuntu
+      versions:
+        - bionic
 
   galaxy_tags:
     - go
