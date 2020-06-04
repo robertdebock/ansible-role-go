@@ -2,9 +2,9 @@
 
 Install go on your system.
 
-|Travis|GitHub|Quality|Downloads|
-|------|------|-------|---------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-go.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-go)|[![github](https://github.com/robertdebock/ansible-role-go/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-go/actions)|[![quality](https://img.shields.io/ansible/quality/34937)](https://galaxy.ansible.com/robertdebock/go)|[![downloads](https://img.shields.io/ansible/role/d/34937)](https://galaxy.ansible.com/robertdebock/go)|
+|Travis|GitHub|Quality|Downloads|Version|
+|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-go.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-go)|[![github](https://github.com/robertdebock/ansible-role-go/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-go/actions)|[![quality](https://img.shields.io/ansible/quality/34937)](https://galaxy.ansible.com/robertdebock/go)|[![downloads](https://img.shields.io/ansible/role/d/34937)](https://galaxy.ansible.com/robertdebock/go)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-go.svg)](https://github.com/robertdebock/ansible-role-go/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -81,8 +81,8 @@ The following roles can be installed to ensure all requirements are met, using `
 ```yaml
 ---
 - robertdebock.bootstrap
-- robertdebock.core_dependencies
 - robertdebock.buildtools
+- robertdebock.core_dependencies
 - robertdebock.git
 
 ```
