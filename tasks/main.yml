@@ -1,5 +1,8 @@
 ---
 # tasks file for go
+- name: include assert.yml
+  include_tasks: assert.yml
+
 - name: create lib64 directory
   file:
     path: /lib64
