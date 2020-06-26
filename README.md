@@ -62,7 +62,7 @@ These variables are set in `defaults/main.yml`:
 # defaults file for go
 
 # Verion to install.
-go_version: 1.11.2
+go_version: 1.14.4
 
 # Where to place go
 go_destination: /usr/local
