@@ -22,9 +22,6 @@
   package:
     name: "{{ go_requirements }}"
     state: present
-  register: go_install_requirements
-  until: go_install_requirements is succeeded
-  retries: 3
 
 - name: unpack go
   unarchive:
@@ -32,9 +29,6 @@
     dest: "{{ go_destination }}"
     remote_src: yes
     creates: "{{ go_destination }}/go/bin"
-  register: go_unpack_go
-  until: go_unpack_go is succeeded
-  retries: 3
 
 - name: add go_destination to path variable
   template:
