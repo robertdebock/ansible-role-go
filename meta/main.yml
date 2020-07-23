@@ -30,7 +30,9 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
+        - focal
         - bionic
+        - xenial
 
   galaxy_tags:
     - go
