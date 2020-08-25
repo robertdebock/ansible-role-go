@@ -7,6 +7,7 @@
   file:
     path: /lib64
     state: directory
+    mode: "0555"
   when:
     - ansible_distribution == "Alpine"
 
@@ -15,6 +16,7 @@
     src: /lib/libc.musl-x86_64.so.1
     dest: /lib64/ld-linux-x86-64.so.2
     state: link
+    mode: "0755"
   when:
     - ansible_distribution == "Alpine"
 
@@ -29,6 +31,7 @@
     dest: "{{ go_destination }}"
     remote_src: yes
     creates: "{{ go_destination }}/go/bin"
+    mode: "0755"
 
 - name: add go_destination to path variable
   template:
@@ -44,11 +47,13 @@
     src: "{{ go_destination }}/go/bin/go"
     dest: /usr/bin/go
     state: link
+    mode: "0755"
 
 - name: create go_path bin directory
   file:
     path: "{{ go_path }}/bin"
     state: directory
+    mode: "0755"
   when:
     - go_packages is defined
 
