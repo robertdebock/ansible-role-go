@@ -1,4 +1,5 @@
 ---
+
 - name: test if go_version is set correctly
   assert:
     that:
