@@ -5,20 +5,20 @@
   include_tasks: assert.yml
   run_once: yes
 
-- name: create lib64 directory
-  file:
-    path: /lib64
-    state: directory
-    mode: "0555"
-  when:
-    - ansible_distribution == "Alpine"
+- name: configure alpine
+  block:
+    - name: create lib64 directory
+      file:
+        path: /lib64
+        state: directory
+        mode: "0555"
 
-- name: link libc to lib64 directory
-  file:
-    src: /lib/libc.musl-x86_64.so.1
-    dest: /lib64/ld-linux-x86-64.so.2
-    state: link
-    mode: "0755"
+    - name: link libc to lib64 directory
+      file:
+        src: /lib/libc.musl-x86_64.so.1
+        dest: /lib64/ld-linux-x86-64.so.2
+        state: link
+        mode: "0755"
   when:
     - ansible_distribution == "Alpine"
 
@@ -51,31 +51,29 @@
     state: link
     mode: "0755"
 
-- name: create go_path bin directory
-  file:
-    path: "{{ go_path }}/bin"
-    state: directory
-    mode: "0755"
-  when:
-    - go_packages is defined
+- name: configure go packages
+  block:
+    - name: create go_path bin directory
+      file:
+        path: "{{ go_path }}/bin"
+        state: directory
+        mode: "0755"
 
-- name: get requested packages
-  command: "go get {{ item }}"
-  args:
-    creates: "{{ go_path }}/src/{{ item }}"
-  loop: "{{ go_packages }}"
-  when:
-    - go_packages is defined
-  environment:
-    GOPATH: "{{ go_path }}"
+    - name: get requested packages
+      command: "go get {{ item }}"
+      args:
+        creates: "{{ go_path }}/src/{{ item }}"
+      loop: "{{ go_packages }}"
+      environment:
+        GOPATH: "{{ go_path }}"
 
-- name: install requested packages
-  command: make install
-  args:
-    chdir: "{{ go_path }}/src/{{ item }}"
-    creates: "{{ go_path }}/bin/{{ item | basename }}"
-  loop: "{{ go_packages }}"
+    - name: install requested packages
+      command: make install
+      args:
+        chdir: "{{ go_path }}/src/{{ item }}"
+        creates: "{{ go_path }}/bin/{{ item | basename }}"
+      loop: "{{ go_packages }}"
+      environment:
+        PATH: "{{ ansible_env.PATH }}:{{ go_destination }}/go/bin"
   when:
     - go_packages is defined
-  environment:
-    PATH: "{{ ansible_env.PATH }}:{{ go_destination }}/go/bin"
