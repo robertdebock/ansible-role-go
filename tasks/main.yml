@@ -9,13 +9,13 @@
 - name: configure alpine
   block:
     - name: create lib64 directory
-      file:
+      ansible.builtin.file:
         path: /lib64
         state: directory
         mode: "0555"
 
     - name: link libc to lib64 directory
-      file:
+      ansible.builtin.file:
         src: /lib/libc.musl-x86_64.so.1
         dest: /lib64/ld-linux-x86-64.so.2
         state: link
@@ -55,7 +55,7 @@
 - name: configure go packages
   block:
     - name: create go_path bin directory
-      file:
+      ansible.builtin.file:
         path: "{{ go_path }}/bin"
         state: directory
         mode: "0755"
