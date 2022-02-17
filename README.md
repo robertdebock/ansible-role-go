@@ -16,10 +16,6 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
   become: yes
   gather_facts: yes
 
-  vars:
-    go_packages:
-      - github.com/golang/dep
-
   roles:
     - role: robertdebock.go
 ```
@@ -99,7 +95,6 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The previous version.
 - The current version.
 - The development version.
-
 
 ## [Included version(s)](#included-versions)
 

@@ -4,6 +4,7 @@
   become: yes
   gather_facts: no
 
-  tasks:
-    - name: check if connection still works
-      ansible.builtin.ping:
+  roles:
+    - role: ansible-role-go
+      go_packages:
+        - github.com/golang/tools
