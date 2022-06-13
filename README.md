@@ -1,5 +1,7 @@
 # [go](#go)
 
+This role has been archived because it's hardly used.
+
 Install go on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|
